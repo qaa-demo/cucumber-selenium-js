@@ -1,7 +1,7 @@
 // locators.js
 // ===========
 
-// locators and data objects can be accesed using dot notation and bracket notation:
+// locators and data objects can be accesed using dot notation or bracket notation:
 
 // dot notation
 // locators.name, i.e locators.username
