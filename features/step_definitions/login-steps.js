@@ -1,41 +1,38 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
+// loging-steps.js
+
+const { Given, When, Then, After } = require('@cucumber/cucumber');
 const { Builder, By, until } = require('selenium-webdriver');
+const assert = require('assert');
+
+console.log("running login steps")
+
+// After each scenario, close the browser
+After(async function () {
+    if (driver) { // Check if the driver exists
+        await driver.quit(); // Close the browser
+    }
+});
 
 let driver;
+const baseUrl = 'https://the-internet.herokuapp.com/login'
 
-Given('the user is on the login page', async function () {
-    driver = new Builder().forBrowser('chrome').build();
-    await driver.get('https://example.com/login');
+Given('I am on the login page', { timeout: 10000 }, async function () {
+    driver = await new Builder().forBrowser('chrome').build();
+    console.log("Navigate to: ", baseUrl)
+    await driver.get(baseUrl);
 });
 
-When('the user enters their credentials', async function () {
-    await driver.findElement(By.id('username')).sendKeys('validUsername');
-    await driver.findElement(By.id('password')).sendKeys('validPassword');
+When('I login with username {string} and password {string}', async function (username, password) {
+    console.log(`Login as ${username} with password ${password}`)
+    await driver.findElement(By.name('username')).sendKeys(username);
+    await driver.findElement(By.name('password')).sendKeys(password);
+    await driver.findElement(By.css('.radius')).click();
 });
 
-When('the user submits the login form', async function () {
-    await driver.findElement(By.id('loginButton')).click();
-});
-
-Then('the user should be logged in successfully', async function () {
-    await driver.wait(until.urlContains('dashboard'), 10000);
-    const currentUrl = await driver.getCurrentUrl();
-    if (!currentUrl.includes('dashboard')) {
-        throw new Error('Login failed');
-    }
-    await driver.quit();
-});
-
-When('the user enters invalid credentials {string} and {string}', async function (username, password) {
-    await driver.findElement(By.id('username')).sendKeys(username);
-    await driver.findElement(By.id('password')).sendKeys(password);
-});
-
-Then('the user should see an error message', async function () {
-    const errorElement = await driver.wait(until.elementLocated(By.css('.error')), 10000);
-    const errorText = await errorElement.getText();
-    if (!errorText.includes('The username and password could not be verified.')) {
-        throw new Error(`Expected error message but got "${errorText}"`);
-    }
-    await driver.quit();
+Then('I should see a message {string}', async function (expectedMessage) {
+    await driver.wait(until.elementLocated(By.id('flash')), 10000);
+    const message = await driver.findElement(By.id('flash')).getText();
+    console.log(message, `expected: ${expectedMessage}`)
+    assert.strictEqual(message.includes(expectedMessage), true);
+    // await driver.quit();
 });

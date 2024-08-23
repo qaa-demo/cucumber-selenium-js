@@ -1,36 +1,46 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
-const { By, until } = require('selenium-webdriver');
+const { Builder, By, until } = require('selenium-webdriver');
+const assert = require('assert');
 
-Given('the user is on the login page', async function () {
-    await this.driver.get('https://example.com/login');
+console.log("running login tag steps")
+
+let driver;
+
+// Step definition for navigating to the login page
+Given('the user is on the login page', { timeout: 10000 }, async function () {
+    driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('https://the-internet.herokuapp.com/login');
 });
 
-When('the user enters their credentials', async function () {
-    await this.driver.findElement(By.id('username')).sendKeys('validUsername');
-    await this.driver.findElement(By.id('password')).sendKeys('validPassword');
+// Step definition for entering valid credentials
+When('the user enters valid credentials', async function () {
+    await driver.findElement(By.name('username')).sendKeys('tomsmith');
+    await driver.findElement(By.name('password')).sendKeys('SuperSecretPassword!');
 });
 
+// Step definition for submitting the login form
 When('the user submits the login form', async function () {
-    await this.driver.findElement(By.id('loginButton')).click();
+    await driver.findElement(By.css('.radius')).click();
 });
 
+// Step definition for verifying successful login
 Then('the user should be logged in successfully', async function () {
-    await this.driver.wait(until.urlContains('dashboard'), 10000);
-    const currentUrl = await this.driver.getCurrentUrl();
-    if (!currentUrl.includes('dashboard')) {
-        throw new Error('Login failed');
-    }
+    await driver.wait(until.elementLocated(By.id('flash')), 10000);
+    const message = await driver.findElement(By.id('flash')).getText();
+    assert.strictEqual(message.includes('You logged into a secure area!'), true);
+    await driver.quit();
 });
 
-When('the user enters invalid credentials {string} and {string}', async function (username, password) {
-    await this.driver.findElement(By.id('username')).sendKeys(username);
-    await this.driver.findElement(By.id('password')).sendKeys(password);
+// Step definition for entering invalid credentials
+When('the user enters invalid credentials', async function () {
+    await driver.findElement(By.name('username')).sendKeys('foo');
+    await driver.findElement(By.name('password')).sendKeys('bar');
 });
 
+// Step definition for verifying error message
 Then('the user should see an error message', async function () {
-    const errorElement = await this.driver.wait(until.elementLocated(By.css('.error')), 10000);
-    const errorText = await errorElement.getText();
-    if (!errorText.includes('The username and password could not be verified.')) {
-        throw new Error(`Expected error message but got "${errorText}"`);
-    }
+    await driver.wait(until.elementLocated(By.id('flash')), 10000);
+    const message = await driver.findElement(By.id('flash')).getText();
+    assert.strictEqual(message.includes('Your username is invalid!'), true);
+    await driver.quit();
 });

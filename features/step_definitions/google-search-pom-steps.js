@@ -7,6 +7,8 @@ const options = new Chrome.Options();
 const args = options.addArguments("start-maximized")
 const GoogleSearchPage = require('../../pom/google-search-page');
 
+console.log("running search pom steps")
+
 let driver;
 let googleSearchPage;
 
