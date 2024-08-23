@@ -1,8 +1,8 @@
 # Cucumber Selenum JavaScript Project Intro Course
 
-### **Introduction to the Crash Course**
+### **Introduction**
 
-Welcome to this crash course on **JavaScript Test Automation with Selenium and Cucumber**! In this course, we will explore how to write effective test automation scripts using JavaScript, Selenium, and Cucumber. The aim is to provide you with a solid foundation in these technologies by guiding you through the creation of basic tests.
+Welcome to this intro course on **JavaScript Test Automation with Selenium and Cucumber**! In this course, we will explore how to write effective test automation scripts using JavaScript, Selenium, and Cucumber. The aim is to provide you with a solid foundation in these technologies by guiding you through the creation of basic tests.
 
 #### **Course Overview**
 
@@ -21,8 +21,10 @@ Welcome to this crash course on **JavaScript Test Automation with Selenium and C
 By the end of this course, you will have a well-rounded understanding of how to set up and write automation tests using JavaScript, Selenium, and Cucumber. Let's get started and build your automation skills!
 
 ## Prerequisites
-* [Node.js](https://nodejs.org/) (with npm)
-* [Visual Studio Code](https://code.visualstudio.com/download)
+* [Node.js](https://nodejs.org/) (with npm) installed on your machine
+* [Visual Studio Code](https://code.visualstudio.com/download) IDE installed on your macine
+* [git] (https://git-scm.com/) installed on your machine
+* [GitHub] register your account and login
 * Basic Knowledge of JavaScript 
 * Basic understanding of [Selenium WebDriver](https://selenium.dev)
 * Basic knowledge of Command Line Interface (CLI) and running commands in Terminal 
@@ -30,58 +32,51 @@ By the end of this course, you will have a well-rounded understanding of how to 
 
 ### **Instructions for Setting Up the Project Folder**
 
-1. **Create the Root Project Folder**
 
-   Open your terminal and run the following command to create the root folder for your project:
-   ```bash
-   mkdir cucumber-selenium-js
-   ```
+---
 
-2. **Navigate to the Project Folder**
+1. **Create and Clone Repository**
 
-   Change directory to the newly created folder:
-   ```bash
-   cd cucumber-selenium-js
-   ```
+   - Create a new empty repository on GitHub named `selenium-cucumber-js`.
+   - Clone the repository to your local machine.
+   - Open the folder in Visual Studio Code.
 
-3. **Initialize a New Node.js Project**
+2. **Add `.gitignore`**
 
-   Initialize a new Node.js project by running:
-   ```bash
-   npm init -y
-   ```
-   This creates a `package.json` file with default settings.
+   - Create a `.gitignore` file and add:
+     ```
+     node_modules/
+     .env
+     ```
+
+3. **Initialize Node.js Project**
+
+   - Open a terminal in Visual Studio Code and run:
+     ```bash
+     npm init -y
+     ```
+
+---
 
 4. **Install Required Libraries**
 
-   Install Selenium WebDriver, Cucumber, and Chromedriver:
+   Install Selenium WebDriver, Cucumber, Chromedriver and Chai(assertion library):
    ```bash
- 
    npm install --save-dev selenium-webdriver @cucumber/cucumber chromedriver chai
    ```
 
 5. **Create the Basic Project Structure**
 
-   Create the folder structure for features and steps:
-   ```bash
-   mkdir -p features/steps
-   ```
-
-   This will set up the following empty folder structure:
    ```
    cucumber-selenium-js/
    ├── features/
-   │   └── steps/
+   │   └── step_definitions/
    ├── node_modules/
    ├── package.json
    ├── package-lock.json
    └── cucumber.js
    ```
 ---
-
-### **Next Steps**
-
-Once you have set up the folder structure, you can start creating feature files and step definition files as outlined in the previous instructions.
 
 
 
@@ -90,13 +85,22 @@ Once you have set up the folder structure, you can start creating feature files 
 **Concepts Covered:**
 - Variables & Data Types
 - Functions
-- Control Flow
 - Error Handling
 - Async/Await
 
 ---
 
 #### **1. Variables & Data Types**
+
+In this exercise, we will create our first test using the Cucumber/Gherkin syntax. We'll start by defining a feature in a .feature file and then implement the corresponding step definitions in a .steps.js file. This exercise will introduce you to the concept of variables in JavaScript. We'll use these variables to interact with web elements and manage data within our tests. 
+
+In JavaScript, variables can be declared using `var`, `let`, or `const` keywords :
+
+- **`var`**: Variables are accessible throughout the entire function or globally if declared outside a function. They can be redeclared and updated.
+
+- **`let`**: Variables are accessible only within the block (e.g., inside `{}`) where they are declared. They cannot be redeclared in the same block and can be updated.
+
+- **`const`**: Variables are accessible only within the block where they are declared and their value cannot be changed. If declared as an object or array, the contents can still be modified.
 
    - **Feature File: `features/variables.feature`**
      ```gherkin
@@ -107,7 +111,7 @@ Once you have set up the folder structure, you can start creating feature files 
          Then I should be redirected to the secure area
      ```
 
-   - **Steps File: `features/steps/variables.steps.js`**
+   - **Steps File: `features/step_definitions/variables.steps.js`**
      ```javascript
      const { Given, When, Then, After } = require('@cucumber/cucumber'); // Import Cucumber functions
      const { expect } = require('chai'); // Import Chai for assertions
@@ -116,13 +120,6 @@ Once you have set up the folder structure, you can start creating feature files 
      let driver; // Declare a variable to hold the WebDriver instance
      const username = 'tomsmith'; // Variable for username
      const password = 'SuperSecretPassword!'; // Variable for password
-
-     // After each scenario, close the browser
-     After(async function () {
-         if (driver) { // Check if the driver exists
-             await driver.quit(); // Close the browser
-         }
-     });
 
      // Step definition for navigating to the login page
      Given('I navigate to the Form Authentication page', async function () {
@@ -141,10 +138,13 @@ Once you have set up the folder structure, you can start creating feature files 
      Then('I should be redirected to the secure area', async function () {
          const content = await driver.findElement(By.id('flash')).getText(); // Get the text of the flash message
          expect(content).to.contain('You logged into a secure area!'); // Assert that the message contains expected text
+         await driver.quit(); // Close the browser
      });
      ```
 
 **Run your test**:
+In terminal run the folowing command:
+
    ```bash
    npx cucumber-js
    ```
@@ -172,7 +172,7 @@ Once you have set up the folder structure, you can start creating feature files 
          Then I should see the message "You logged into a secure area!"
      ```
 
-   - **Steps File: `features/steps/form-auth.steps.js`**
+   - **Steps File: `features/step_definitions/form-auth.steps.js`**
      ```javascript
      const { Given, When, Then, After } = require('@cucumber/cucumber'); // Import Cucumber functions
      const { expect } = require('chai'); // Import Chai for assertions
@@ -229,72 +229,73 @@ Once you have set up the folder structure, you can start creating feature files 
 
 ---
 
+
 #### **3. Error Handling**
 
-   - **Feature File: `features/dropdown.feature`**
-     ```gherkin
-     Feature: Error Handling
-       Scenario: Handling errors while selecting dropdown options
-         Given I navigate to the Dropdown page
-         When I select an invalid option
-         Then I should see an error message
-     ```
+- **Feature File: `features/dropdown.feature`**
+  ```gherkin
+  Feature: Error Handling
+    Scenario: Handling errors while selecting dropdown options
+      Given I navigate to the Dropdown page
+      When I select an invalid option
+      Then I should see an error message
+  ```
 
-   - **Steps File: `features/steps/dropdown.steps.js`**
-     ```javascript
-     const { Given, When, Then, After } = require('@cucumber/cucumber'); // Import Cucumber functions
-     const { expect } = require('chai'); // Import Chai for assertions
-     const { Builder, By, until } = require('selenium-webdriver'); // Import Selenium WebDriver classes
+- **Steps File: `features/step_definitions/dropdown.steps.js`**
+  ```javascript
+  const { Given, When, Then } = require('@cucumber/cucumber'); // Import Cucumber functions
+  const { expect } = require('chai'); // Import Chai for assertions
+  const { Builder, By } = require('selenium-webdriver'); // Import Selenium WebDriver classes
 
-     let driver; // Declare a variable to hold the WebDriver instance
+  let driver; // Declare a variable to hold the WebDriver instance
 
-     // After each scenario, close the browser
-     After(async function () {
-         if (driver) { // Check if the driver exists
-             await driver.quit(); // Close the browser
-         }
-     });
+  // Step definition for navigating to the dropdown page
+  Given('I navigate to the Dropdown page', async function () {
+      driver = await new Builder().forBrowser('chrome').build(); // Initialize WebDriver and open Chrome
+      await driver.get('https://the-internet.herokuapp.com/dropdown'); // Navigate to the dropdown page
+  });
 
-     // Step definition for navigating to the dropdown page
-     Given('I navigate to the Dropdown page', async function () {
-         driver = await new Builder().forBrowser('chrome').build(); // Initialize WebDriver and open Chrome
-         await driver.get('https://the-internet.herokuapp.com/dropdown'); // Navigate to the dropdown page
-     });
+  // Step definition for selecting an invalid option and handling errors
+  When('I select an invalid option', async function () {
+      try {
+          await driver.findElement(By.css('select')).sendKeys('Invalid Option'); // Attempt to select an invalid option
+      } catch (error) {
+          console.error('Error selecting option:', error); // Log the error if selection fails
+      } finally {
+          // Cleanup code or additional operations can go here if needed
+      }
+  });
 
-     // Step definition for selecting an invalid option and handling errors
-     When('I select an invalid option', async function () {
-         try {
-             await driver.findElement(By.css('select')).sendKeys('Invalid Option'); // Attempt to select an invalid option
-         } catch (error) {
-             console.error('Error selecting option:', error); // Log the error
-         }
-     });
+  // Step definition for verifying the error message
+  Then('I should see an error message', async function () {
+      const errorMessage = 'Invalid Option'; // Example error message
+      let content;
 
-     // Step definition for verifying the error message
-     Then('I should see an error message', async function () {
-         const errorMessage = 'Invalid Option'; // Example error message
-         const content = await driver.findElement(By.css('#error')).getText(); // Get the text of the error message
-         expect(content).to.contain(errorMessage); // Assert that the error message contains expected text
-     });
-     ```
-**Run your test**:
-   ```bash
-   npx cucumber-js
-   ```
+      try {
+          content = await driver.findElement(By.css('#error')).getText(); // Attempt to get the error message text
+      } catch (error) {
+          console.error('Error retrieving error message:', error); // Log the error if retrieval fails
+      } finally {
+          // Close the browser after test
+          if (driver) {
+              await driver.quit(); // Ensure the browser is closed
+          }
+      }
 
-**Update your Git Repo:**
-   1. After updating your files, open the terminal.
-   2. Run the following commands to commit your changes:
-      ```bash
-      git status
-      git add .
-      git commit -m "added error handling example"
-      git push
-      ```
+      // Assert that the error message contains the expected text
+      expect(content).to.include(errorMessage); 
+  });
+  ```
+
+### **Explanation of Error Handling**
+
+- **`try` block**: Used to write code that may throw an error. If an error occurs, execution moves to the `catch` block.
+- **`catch` block**: Handles errors that occur in the `try` block. Here, errors are logged to the console.
+- **`finally` block (Optional)**: Contains code that always runs, regardless of whether an error occurred or not. It is useful for cleanup operations, such as closing the browser.
 
 ---
 
-#### **5. Async/Await**
+#### **4. Async/Await**
 
    - **Feature File: `features/drag-and-drop.feature`**
      ```gherkin
@@ -305,7 +306,7 @@ Once you have set up the folder structure, you can start creating feature files 
          Then I should see the elements in the new positions
      ```
 
-   - **Steps File: `features/steps/drag-and-drop.steps.js`**
+   - **Steps File: `features/step_definitions/drag-and-drop.steps.js`**
      ```javascript
      const { Given, When, Then, After } = require('@cucumber/cucumber');
      const { Builder, By, Actions } = require('selenium-webdriver');
@@ -337,24 +338,122 @@ Once you have set up the folder structure, you can start creating feature files 
          await driver.quit();
      });
      ```
+---
+ Run your tests `npm test` and dont't forget to push changes to you GitHub Repo
+
+
+### **5. Let's put it all together - JavaScript Alerts Automation**
+NOTE: in this example we will be using Node.js built in assertions
+
+**Feature File: `features/alerts.feature`**
+
+```gherkin
+Feature: JavaScript Alerts
+
+  Scenario: Handling "Click for JS Alert"
+    Given I navigate to the JavaScript Alerts page
+    When I click the "Click for JS Alert" button
+    Then I should see an alert with the text "I am a JS Alert"
+    And I should see the result text "You successfully clicked an alert"
+
+  Scenario: Handling "Click for JS Confirm"
+    When I click the "Click for JS Confirm" button
+    Then I should see a confirmation alert with the text "I am a JS Confirm"
+    And the result text should be "You clicked: Ok"
+
+  Scenario: Handling "Click for JS Prompt" with cancel
+    When I click the "Click for JS Prompt" button
+    Then I should see a prompt alert with the text "I am a JS prompt"
+    When I dismiss the prompt
+    And the result text should be "You clicked: Cancel"
+
+  Scenario: Handling "Click for JS Prompt" with text input
+    When I click the "Click for JS Prompt" button
+    Then I should see a prompt alert with the text "I am a JS prompt"
+    When I enter "Cucumber is Cool" into the prompt
+    And I accept the prompt
+    And the result text should be "You entered: Cucumber is Cool"
+```
+
+**Steps File: `features/steps/alerts.steps.js`**
+
+```javascript
+const { Given, When, Then } = require('@cucumber/cucumber'); // Import Cucumber functions for defining steps
+const { Builder, By, until } = require('selenium-webdriver'); // Import Selenium WebDriver components
+const assert = require('assert'); // Import built-in Node.js assertion library
+
+let driver; // Variable to hold the WebDriver instance
+
+Given('I navigate to the JavaScript Alerts page', async function () {
+    driver = await new Builder().forBrowser('chrome').build(); // Create a new instance of WebDriver for Chrome
+    await driver.get('https://the-internet.herokuapp.com/javascript_alerts'); // Navigate to the JavaScript Alerts page
+});
+
+When('I click the "Click for JS Alert" button', async function () {
+    await driver.findElement(By.css('button[onclick="jsAlert()"]')).click(); // Find and click the "Click for JS Alert" button
+});
+
+Then('I should see an alert with the text "I am a JS Alert"', async function () {
+    await driver.wait(until.alertIsPresent(), 10000); // Wait until the alert is present
+    const alert = await driver.switchTo().alert(); // Switch to the alert
+    assert.strictEqual(await alert.getText(), 'I am a JS Alert'); // Assert that the alert text is correct
+    alert.accept(); // Accept the alert
+});
+
+Then('I should see the result text "You successfully clicked an alert"', async function () {
+    const resultText = await driver.findElement(By.id('result')).getText(); // Get the result text from the page
+    assert.strictEqual(resultText, 'You successfully clicked an alert'); // Assert that the result text is correct
+    await driver.quit(); // Close the browser
+});
+
+When('I click the "Click for JS Confirm" button', async function () {
+    await driver.findElement(By.css('button[onclick="jsConfirm()"]')).click(); // Find and click the "Click for JS Confirm" button
+});
+
+Then('I should see a confirmation alert with the text "I am a JS Confirm"', async function () {
+    await driver.wait(until.alertIsPresent(), 10000); // Wait until the confirmation alert is present
+    const alert = await driver.switchTo().alert(); // Switch to the confirmation alert
+    assert.strictEqual(await alert.getText(), 'I am a JS Confirm'); // Assert that the alert text is correct
+    alert.accept(); // Accept the alert
+});
+
+Then('the result text should be "You clicked: Ok"', async function () {
+    const resultText = await driver.findElement(By.id('result')).getText(); // Get the result text from the page
+    assert.strictEqual(resultText, 'You clicked: Ok'); // Assert that the result text is correct
+    await driver.quit(); // Close the browser
+});
+
+When('I click the "Click for JS Prompt" button', async function () {
+    await driver.findElement(By.css('button[onclick="jsPrompt()"]')).click(); // Find and click the "Click for JS Prompt" button
+});
+
+Then('I should see a prompt alert with the text "I am a JS prompt"', async function () {
+    await driver.wait(until.alertIsPresent(), 10000); // Wait until the prompt alert is present
+    const alert = await driver.switchTo().alert(); // Switch to the prompt alert
+    assert.strictEqual(await alert.getText(), 'I am a JS prompt'); // Assert that the alert text is correct
+    alert.sendKeys('Cucumber is cool'); // Enter text into the prompt
+    alert.accept(); // Accept the prompt
+});
+
+```
 
 ---
-**Run your test**:
+Run your tests `npm test` and dont't forget to push changes to you GitHub Repo
 
-**Update your Git Repo:**
 
----
 ## Project Folder Structure by this point:
 ```
 cucumber-selenium-js/
 │
 ├── features/
+│   ├── alets.feature
 │   ├── login.feature
 │   ├── form-auth.feature
 │   ├── dropdown.feature
 │   ├── dynamic-content.feature
 │   ├── drag-and-drop.feature
-│   └── steps/
+│   └── step_definitions/
+│       ├── alert.steps.js
 │       ├── login.steps.js
 │       ├── form-auth.steps.js
 │       ├── dropdown.steps.js
@@ -367,6 +466,15 @@ cucumber-selenium-js/
 ├── package-lock.json
 └── cucumber.js
 ```
+Here is the updated instruction:
+
+---
+
+**Create Your Own Examples:**
+
+Visit [https://the-internet.herokuapp.com/](https://the-internet.herokuapp.com/) and select a page that has not yet been covered in the course. Some examples include: Checkboxes, File Download, Hovers, Nested Frames. Each page offers different interactive elements and scenarios to automate.
+
+For each selected page, create a new Cucumber feature file and a corresponding step definition file. Write tests that cover the key interactions and scenarios available on that page. After creating and running your tests, ensure they are working as expected. Finally, update your repository with the new feature and step definition files to keep your project up to date.
 
 ---
 # References:
@@ -472,3 +580,10 @@ Continuous feedback is provided during development and testing phases. POs, QA E
 - Review and Feedback: The team reviews test results, addresses any failures, and updates the feature file and step definitions as necessary based on the feedback.
 
 This approach ensures that all team members are aligned on the requirements, responsibilities are clearly defined, and communication channels are established to handle any issues that arise during the development and testing process.
+
+---
+Here is a list of links to the official pages for Node.js, Cucumber, and Selenium:
+
+- [Node.js Official Website](https://nodejs.org/)
+- [Cucumber Official Website](https://cucumber.io/)
+- [Selenium Official Website](https://www.selenium.dev/)
