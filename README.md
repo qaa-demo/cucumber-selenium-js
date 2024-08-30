@@ -1,175 +1,70 @@
-# Cucumber Selenium JavaScript Framework
-## BDD (Behavior-Driven Development)
-Behavior-Driven Development **(BDD) is a software development methodology** that extends Test-Driven Development (TDD) by emphasizing collaboration between developers, testers, and business stakeholders. BDD focuses on the behavioral specification of software features. It aims to improve communication and understanding between all parties involved in the development process.
 
-In BDD, features are described in terms of the expected behavior of the system, written in a language that is easily understandable by non-technical stakeholders. These behaviors are often defined through scenarios that describe how the software should behave in different situations.
+# Cucumber/Selenium/JavaScript Demo and Intro Training
 
-## Cucumber
-**Cucumber is a popular tool used in BDD**. It allows you to write tests in a natural, human-readable language that non-programmers can understand. Cucumber supports multiple programming languages and integrates with various testing frameworks. It is often used to bridge the gap between non-technical stakeholders and developers by using plain language to describe the behavior of the software.
+Welcome to the Cucumber/Selenium/JavaScript Demo and Intro Training repository! This guide will help you get started with the project and provide you with instructions on how to set up and use the demo. 
 
-Cucumber uses feature files written in Gherkin syntax to define the behavior of the application. These feature files are then used to generate executable tests.
+## Prerequisites
 
-## Gherkin
-**Gherkin is the language used by Cucumber** to write the test scenarios in a human-readable format. It uses a simple syntax to define test cases and scenarios. Gherkin syntax includes keywords like:
+Before you begin, make sure you have the following installed on your local machine:
 
-- **Feature** Describes the feature being tested.
-- **Scenario** Represents a single test case or behavior.
-- **Given** Describes the initial context or setup.
-- **When** Describes the action or event.
-- **Then** Describes the expected outcome or result.
+- **Node.js**: Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
+- **Git**: Git is required for cloning the project. Install Git from [git-scm.com](https://git-scm.com/).
+- **Visual Studio Code (VSCode)**: A popular code editor. Download it from [code.visualstudio.com](https://code.visualstudio.com/).
+- **GitHub Account**: A GitHub account is required to clone the repository and manage your project. You can sign up for a free account at [github.com](https://github.com/).
 
-### Example of Gherkin Syntax:
-```gherkin
-Feature: User login
+## Clone the Project
 
-  Scenario: Successful login with valid credentials
-    Given the user is on the login page
-    When the user enters valid credentials
-    And the user clicks the login button
-    Then the user should be redirected to the homepage
-    And a welcome message should be displayed
+1. Open your terminal (Command Prompt, PowerShell, or any terminal of your choice).
+2. Clone the repository to your local machine using the following command:
 
-```
+   ```bash
+   git clone [replace with this repo location]
+   ```
 
+3. Navigate into the project directory:
 
-## Roles and Responsibilities in BDD with Cucumber and Gherkin
+   ```bash
+   cd demo-training-repo
+   ```
 
-### 1. Product Owners / Business Analysts
-#### Responsibilities:
-- Writing Features: Product Owners (POs) or Business Analysts (BAs) are responsible for writing the initial feature files using Gherkin syntax. They describe the business requirements and expected behaviors in a language that is understandable to both technical and non-technical team members.
-- Example: A PO writes a feature file to define a scenario where a user logs in successfully with valid credentials.
-### 2. Test Automation Engineers / QA Engineers
-#### Responsibilities:
-- Developing Step Definitions: QA Engineers or Test Automation Engineers create the step definitions that map the Gherkin steps (Given, When, Then) to actual code. These step definitions implement the logic required to interact with the application and validate the outcomes described in the feature files.
-- Developing Automated Tests: They also develop automated test scripts based on the step definitions and ensure that these tests are integrated into the CI/CD pipeline.
-- Example: A QA Engineer writes the step definitions to interact with the login page, fill in credentials, and verify that the user is redirected to the homepage.
-### 3. Developers
-#### Responsibilities:
-- Collaborating on Features: Developers collaborate with the PO and QA Engineers to ensure that the feature files accurately represent the expected behavior and that the implementation aligns with the described scenarios.
-- Providing Feedback: They provide feedback on the feasibility and technical aspects of the scenarios and suggest any necessary adjustments.
-- Example: A Developer reviews the feature file for user login and suggests adjustments to handle edge cases or clarify the expected outcomes.
-### 4. Team Communication and Collaboration:
-#### Meetings: 
-Regular meetings such as sprint planning, refinement sessions, and daily stand-ups are used to discuss and review feature files, scenarios, and test results. During these meetings, team members align on the feature descriptions and implementation details.
-#### Documentation and Collaboration Tools: 
-Tools like Azure DevOps, JIRA, Confluence, or a similar project management system are used to document feature files, track the status of test cases, and facilitate communication between team members.
-#### Feedback Loops: 
-Continuous feedback is provided during development and testing phases. POs, QA Engineers, and Developers discuss any issues or discrepancies in the feature files and update them as needed.
-#### Example of Communication:
-- Initial Setup: The PO writes a feature file for user login and shares it with the team.
-- Development: The Developer and QA Engineer review the feature file in a sprint planning meeting. The Developer provides feedback on the implementation, and the QA Engineer starts developing step definitions and automated tests.
-- Integration: During the sprint, the QA Engineer integrates the automated tests into the CI/CD pipeline and communicates any issues or updates related to the test execution.
-- Review and Feedback: The team reviews test results, addresses any failures, and updates the feature file and step definitions as necessary based on the feedback.
+## Install Dependencies
 
-This approach ensures that all team members are aligned on the requirements, responsibilities are clearly defined, and communication channels are established to handle any issues that arise during the development and testing process.
+1. Install the project dependencies using npm:
+
+   ```bash
+   npm install
+   ```
+
+   This command will read the `package.json` file and install all required packages, including Cucumber and Selenium.
+
+## Basic Training
+
+1. The basic training materials are stored in `INTRO.md`. Open this file to get started with the introductory tutorial.
+2. Follow the instructions in `INTRO.md` to complete the intro tutorial. This will guide you through the basics of using Cucumber and Selenium with JavaScript.
+
+## Create a New Project
+
+1. **Select a Web App**: Choose a web application you want to automate. This could be an internal tool, a sample app, or any other web-based application.
+
+   - **[Parabank](https://parabank.parasoft.com/parabank/index.htm)**: A sample banking application for testing purposes.
+   - **[Sauce Labs Demo App](https://www.saucedemo.com/)**: An e-Commerse demo app for testing various web automation scenarios.
+   - **[Demo Orange HRM](https://opensource-demo.orangehrmlive.com/web/index.php/auth/login)**: HRM site for practicing automation.
+   - Other Apps of your choice with business logic and multiple test cases you can automate
 
 
-## Project Structure
+2. **Create a New Project**: Based on what you learned in the intro tutorial, create a new project for automating your selected web app. You may start by setting up a new directory and initializing it with `npm`.
 
-```
-/project-root-folder                    # Project root folder i.e. selenium-cucumber-js
-   ├── features/                        # Directory containing feature files
-   │   ├── example.feature              # Example feature file
-   │   └── other-feature.feature        # Additional feature files
-   ├── step_definitions/                # Directory for step definitions
-   │   ├── example_steps.js             # JavaScript file for step definitions
-   │   └── other_steps.js               # Additional step definition files
-   ├── support/                         # Directory for support files
-   │   ├── hooks.js                     # Hooks for setup and teardown
-   │   └── world.js                     # Custom world setup
-   ├── package.json                     # npm package configuration file
-   └── cucumber.js                      # Cucumber configuration file
-```
+3. **Create a Test Plan and Test Cases**: Develop a test plan outlining the features and scenarios you want to automate. Write test cases based on this plan.
 
-## BDD Test Automation Development
+4. **Start Creating Your QA Automation Framework**: Set up your QA automation framework using Cucumber and Selenium. Create feature files, step definitions, and any necessary configuration files. Implement the automation of your test cases according to your test plan.
 
-### 1. Define Features
-   - **Create Feature Files**: Write `.feature` files in the `features/` directory using Gherkin syntax.
-     - Example (`example.feature`):
-       ```gherkin
-       Feature: Example Feature
-         Scenario: Example Scenario
-           Given a precondition
-           When an action is performed
-           Then an expected outcome is observed
-       ```
+5. **Automate Your Test Cases**: Begin automating the test cases you defined. Run your tests to ensure they work correctly and refine them as needed.
 
-### 2. Implement Step Definitions
-   - **Create Step Definition Files**: Implement the steps described in feature files using JavaScript in the `step_definitions/` directory.
-     - Example (`example_steps.js`):
-       ```javascript
-       const { Given, When, Then } = require('@cucumber/cucumber');
+## Conclusion
 
-       Given('a precondition', function () {
-         // Implementation code
-       });
+You are now ready to start working on your QA automation project using Cucumber and Selenium with JavaScript. If you encounter any issues or have questions, refer to the documentation or seek help from the community.
 
-       When('an action is performed', function () {
-         // Implementation code
-       });
+Happy leanrning!
 
-       Then('an expected outcome is observed', function () {
-         // Implementation code
-       });
-       ```
-
-### 3. Configure Cucumber
-   - **Setup Configuration**: Define Cucumber options and hooks in `cucumber.js` or `package.json`.
-     - Example (`cucumber.js`):
-       ```javascript
-       module.exports = {
-         default: `--format-options '{"showSnippets": true}'`,
-       };
-       ```
-
-### 4. Use Hooks and Support Files
-   - **Define Hooks**: Implement hooks for setup and teardown tasks in `support/hooks.js`.
-     - Example (`hooks.js`):
-       ```javascript
-       const { Before, After } = require('@cucumber/cucumber');
-
-       Before(function () {
-         // Code to run before each scenario
-       });
-
-       After(function () {
-         // Code to run after each scenario
-       });
-       ```
-
-   - **Custom World Setup**: Define custom world setup in `support/world.js`.
-     - Example (`world.js`):
-       ```javascript
-       const { setWorldConstructor } = require('@cucumber/cucumber');
-
-       class CustomWorld {
-         constructor() {
-           // Custom setup
-         }
-       }
-
-       setWorldConstructor(CustomWorld);
-       ```
-
-### 5. Use Tags
-   - **Organize and Filter Tests**: Tags are used in feature files to categorize and filter scenarios.
-     - Example:
-       ```gherkin
-       @login
-       Scenario: Valid login
-         Given the user is on the login page
-         When the user enters valid credentials
-         Then the user should be logged in successfully
-       ```
-   - **Run Tagged Tests**: Execute specific scenarios by using the `--tags` option with the `npm test` command.
-     - Command:
-       ```bash
-       npm test -- --tags "@login"
-       ```
-
-### 6. Execute Tests
-   - **Run Tests**: Use the `test` script in `package.json` to execute tests.
-     - Command:
-       ```bash
-       npm test
-       ```
+---
+.

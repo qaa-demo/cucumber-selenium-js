@@ -15,6 +15,7 @@ Given('the user is on the login page', { timeout: 10000 }, async function () {
 // Step definition for entering valid credentials
 When('the user enters valid credentials', async function () {
     await driver.findElement(By.name('username')).sendKeys('tomsmith');
+    //await driver.findElement(By.id('username')).sendKeys('tomsmith')
     await driver.findElement(By.name('password')).sendKeys('SuperSecretPassword!');
 });
 

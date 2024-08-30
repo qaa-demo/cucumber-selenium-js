@@ -1,22 +1,22 @@
-# Cucumber Selenum JavaScript Project Intro Course
+# Cucumber Selenum JavaScript Project Intro
 
 ### **Introduction**
 
-Welcome to this intro course on **JavaScript Test Automation with Selenium and Cucumber**! In this course, we will explore how to write effective test automation scripts using JavaScript, Selenium, and Cucumber. The aim is to provide you with a solid foundation in these technologies by guiding you through the creation of basic tests.
+Welcome to this intro course on **JavaScript Test Automation with Selenium and Cucumber**! In this course, we will explore how to write test automation scripts using JavaScript, Selenium, and Cucumber. The aim is to provide you with a foundation in these technologies by guiding you through the creation of basic tests.
 
 #### **Course Overview**
 
-1. **Project Setup**: We will start by creating a project directory and installing the required dependencies. You’ll learn how to set up your development environment to support Selenium and Cucumber.
+1. **Project Setup**: We will start by creating a project directory and installing the required dependencies. You’ll learn how to set up your development environment to support Selenium and Cucumber BDD framework.
 
-2. **Cucumber Feature and Steps Structure**: Next, we will dive into the Cucumber framework, setting up feature files and step definitions. This will help you understand how to define and implement test scenarios in a readable, maintainable format.
+2. **Cucumber Feature and Steps Structure**: Next, we will dive into the Cucumber framework, setting up feature files with Gherkin Given And Then language syntax and step definitions with JavaScript. This will help you understand how to define and implement test scenarios in a Cucumber BDD Gherkin format.
 
-3. **Basic Selenium Tests**: Through hands-on examples, you’ll practice writing basic Selenium tests. These examples will cover common interactions with web elements and showcase how to leverage Selenium WebDriver for browser automation.
+3. **Basic Selenium Tests**: Through hands-on examples, you’ll practice writing basic Selenium tests. These examples will cover common interactions with web elements and showcase how to leverage Selenium WebDriver for browser automation,
 
 #### **Learning Approach**
 
-- **Interactive Coding**: Instead of copying and pasting code, we encourage you to type the code yourself. This approach will reinforce your learning and prepare you for coding interviews by helping you become more familiar with syntax and debugging.
+- **Interactive Coding**: Instead of copying and pasting code, we encourage you to **type the code yourself**. This approach will reinforce your learning and **prepare you for coding interviews** by helping you become more familiar with syntax and debugging.
 
-- **Hands-On Practice**: Each section will include practical examples related to test automation. We’ll use real-world scenarios from [The Internet](https://the-internet.herokuapp.com/) to create and test different features, allowing you to apply what you’ve learned in a tangible way.
+- **Hands-On Practice**: Each section will include practical examples related to test automation. We’ll use real-world scenarios from [The Internet](https://the-internet.herokuapp.com/) to create and test different features, allowing you to practice setting up feature/step definition structure plus practice Selenium working with selenium locators and JavaScript syntax.
 
 By the end of this course, you will have a well-rounded understanding of how to set up and write automation tests using JavaScript, Selenium, and Cucumber. Let's get started and build your automation skills!
 
@@ -31,8 +31,6 @@ By the end of this course, you will have a well-rounded understanding of how to 
 * Basic understanding of git version control and :octocat: GitHub source control technologies
 
 ### **Instructions for Setting Up the Project Folder**
-
-
 ---
 
 1. **Create and Clone Repository**
@@ -60,18 +58,19 @@ By the end of this course, you will have a well-rounded understanding of how to 
 
 4. **Install Required Libraries**
 
-   Install Selenium WebDriver, Cucumber, Chromedriver and Chai(assertion library):
+   Install Selenium WebDriver, Cucumber, Chromedriver and Chai (assertion library):
    ```bash
    npm install --save-dev selenium-webdriver @cucumber/cucumber chromedriver chai
    ```
 
 5. **Create the Basic Project Structure**
-
+Add `features` and `features/step-definitions` and  `support` folders. Your folder structure should look like this:
    ```
    cucumber-selenium-js/
    ├── features/
    │   └── step_definitions/
    ├── node_modules/
+   ├── support/   
    ├── package.json
    ├── package-lock.json
    └── cucumber.js
@@ -87,6 +86,8 @@ By the end of this course, you will have a well-rounded understanding of how to 
 - Functions
 - Error Handling
 - Async/Await
+- Using Hooks in Cucumber
+- Using Tags in Cucumber
 
 ---
 
@@ -149,7 +150,7 @@ In terminal run the folowing command:
    npx cucumber-js
    ```
 
-**Update your Git Repo:**
+**Update your GitHub Repo:**
    1. After updating your files, open the terminal.
    2. Run the following commands to commit your changes:
       ```bash
@@ -217,7 +218,7 @@ In terminal run the folowing command:
    npx cucumber-js
    ```
 
-**Update your Git Repo:**
+**Update your GitHub Repo:**
    1. After updating your files, open the terminal.
    2. Run the following commands to commit your changes:
       ```bash
@@ -294,6 +295,9 @@ In terminal run the folowing command:
 - **`finally` block (Optional)**: Contains code that always runs, regardless of whether an error occurred or not. It is useful for cleanup operations, such as closing the browser.
 
 ---
+Run your tests and push the changes to your GitHub Repo
+
+---
 
 #### **4. Async/Await**
 
@@ -339,8 +343,9 @@ In terminal run the folowing command:
      });
      ```
 ---
- Run your tests `npm test` and dont't forget to push changes to you GitHub Repo
+Run your tests and push the changes to your GitHub Repo
 
+---
 
 ### **5. Let's put it all together - JavaScript Alerts Automation**
 NOTE: in this example we will be using Node.js built in assertions
@@ -438,13 +443,14 @@ Then('I should see a prompt alert with the text "I am a JS prompt"', async funct
 ```
 
 ---
-Run your tests `npm test` and dont't forget to push changes to you GitHub Repo
+Run your tests and push the changes to your GitHub Repo
+
+---
 
 
 ## Project Folder Structure by this point:
 ```
 cucumber-selenium-js/
-│
 ├── features/
 │   ├── alets.feature
 │   ├── login.feature
@@ -459,14 +465,142 @@ cucumber-selenium-js/
 │       ├── dropdown.steps.js
 │       ├── dynamic-content.steps.js
 │       └── drag-and-drop.steps.js
-│
 ├── node_modules/
-│
+├── support/ 
 ├── package.json
 ├── package-lock.json
 └── cucumber.js
 ```
-Here is the updated instruction:
+
+---
+
+# Introduction to Using Hooks in Cucumber
+
+In this tutorial, we'll explore how to use `Before` and `After` hooks in Cucumber to manage your Selenium WebDriver setup and teardown. This approach helps keep your step definitions clean and focused on testing logic.
+
+## Overview
+
+Hooks are special functions that allow you to run code before or after scenarios or features. By using hooks, you can centralize setup and cleanup logic, making your test suite more organized and maintainable.
+
+### Setting Up Hooks
+
+1. **Create the `hooks.js` File**
+
+   In your `features/support` directory, create a file named `hooks.js`. This file will manage the initialization and teardown of your WebDriver.
+
+   ```javascript
+   const { Before, After } = require('@cucumber/cucumber');
+   const { Builder } = require('selenium-webdriver');
+   
+   // Initialize WebDriver
+   let driver;
+   
+   Before(async function () {
+     driver = new Builder().forBrowser('chrome').build(); // Initialize WebDriver
+     this.driver = driver; // Make WebDriver available in step definitions
+   });
+   
+   After(async function () {
+     await driver.quit(); // Close WebDriver instance after each scenario
+   });
+   ```
+
+   - **`Before` Hook**: This function runs before each scenario. It initializes the WebDriver instance and makes it available to step definitions via `this.driver`.
+   - **`After` Hook**: This function runs after each scenario. It closes the WebDriver instance to clean up resources.
+
+2. **Update Step Definitions**
+
+   Now that the WebDriver setup and teardown are handled in `hooks.js`, your step definitions will look cleaner. Here’s how you should modify your step definitions to use the WebDriver instance from the hooks:
+
+   ```javascript
+   const { Given, When, Then } = require('@cucumber/cucumber');
+   const { By, until } = require('selenium-webdriver');
+   const assert = require('assert');
+   
+   Given('user is on the login page', async function () {
+     await this.driver.get('https://example.com/login');
+   });
+   
+   When('user enters valid credentials', async function () {
+     await this.driver.findElement(By.css('#username')).sendKeys('user');
+     await this.driver.findElement(By.css('#password')).sendKeys('user');
+   });
+   
+   When('user submits the login form', async function () {
+     await this.driver.findElement(By.css('#submit')).click();
+   });
+   
+   Then('user should see a welcome header', async function () {
+     const welcomeHeader = await this.driver.wait(until.elementLocated(By.css('#welcome-header')), 10000);
+     await this.driver.wait(until.elementIsVisible(welcomeHeader), 10000);
+     assert.strictEqual(await welcomeHeader.isDisplayed(), true, 'Welcome header is not visible');
+     const currentUrl = await this.driver.getCurrentUrl();
+     assert.strictEqual(currentUrl, 'https://example.com/dashboard', 'URL does not match expected value');
+   });
+   ```
+
+### Benefits of Using Hooks
+
+- **Cleaner Step Definitions**: With setup and teardown code in hooks, your step definitions are focused on testing logic rather than WebDriver management.
+- **Centralized Management**: Hooks allow you to manage WebDriver initialization and cleanup in one place, making it easier to update or modify the setup process.
+---
+
+
+# Introduction to Using Tags in Cucumber
+
+Tags in Cucumber allow you to categorize and filter your scenarios or features. This tutorial covers how to use tags effectively and provides an example of how to tag scenarios for valid and invalid login tests.
+
+## Using Tags in Cucumber
+
+Tags help in organizing tests, running specific subsets of tests, and excluding certain tests from being executed.
+
+### Adding Tags to Scenarios
+
+You can add tags directly to your feature files. Tags are added at the beginning of a feature or scenario and are preceded by the `@` symbol.
+
+#### Example Feature File
+
+```gherkin
+# features/login.feature
+
+@valid
+Feature: User Login
+
+  Scenario: Successful login with valid credentials
+    Given user is on the login page
+    When user enters valid credentials
+    And user submits the login form
+    Then user should see a welcome header
+
+@invalid
+Feature: User Login
+
+  Scenario: Unsuccessful login with invalid credentials
+    Given user is on the login page
+    When user enters invalid credentials
+    And user submits the login form
+    Then user should see an error message
+```
+
+### Running Tagged Scenarios
+
+You can run specific tagged scenarios using Cucumber’s command-line options. For example, to run only the scenarios tagged with `@valid`, use:
+
+```bash
+npx cucumber-js --tags @valid
+```
+
+To run scenarios tagged with `@invalid`, use:
+
+```bash
+npx cucumber-js --tags @invalid
+```
+
+To run scenarios tagged with both `@valid` and `@important`, use:
+
+```bash
+npx cucumber-js --tags "@valid and @important"
+```
 
 ---
 
