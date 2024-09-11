@@ -9,18 +9,24 @@ Before you begin, make sure you have the following installed on your local machi
 
 - **Node.js**: Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
 
-> **Node.js** is a cross-platform, open-source JavaScript runtime environment that can run on Windows, Linux, Unix, macOS, and more. Node.js runs on the V8 JavaScript engine, and executes JavaScript code outside a web browser. Node.js lets developers use JavaScript to write command line tools and for server-side scripting.
+> [!NOTE]
+> Node.js is a cross-platform, open-source JavaScript runtime environment that can run on Windows, Linux, Unix, macOS, and more. Node.js runs on the V8 JavaScript engine, and executes JavaScript code outside a web browser. Node.js lets developers use JavaScript to write command line tools and for server-side scripting.
 
 - **Git**: Git is required for cloning the project. Install Git from [git-scm.com](https://git-scm.com/).
 
-> **Git** is a distributed version control system that tracks versions of files. It is often used to control source code by programmers who are developing software collaboratively.
+> [!NOTE]
+> Git is a distributed version control system that tracks versions of files. It is often used to control source code by programmers who are developing software collaboratively.
 
+- **Visual Studio Code (VSCode)**: A popular code editor. Download it from [code.visualstudio.com](https://code.visualstudio.com/).
 
 - **GitHub Account**: A GitHub account is required to clone the repository and manage your project. You can sign up for a free account at [github.com](https://github.com/).
 
-> **GitHub** is a developer platform that allows developers to create, store, manage and share their code. It uses Git software, providing the distributed version control of Git plus access control, bug tracking, software feature requests, task management, continuous integration, and wikis for every project.
+> [!NOTE]
+> GitHub is a developer platform that allows developers to create, store, manage and share their code. It uses Git software, providing the distributed version control of Git plus access control, bug tracking, software feature requests, task management, continuous integration, and wikis for every project.
 
-- **Visual Studio Code (VSCode)**: A popular code editor. Download it from [code.visualstudio.com](https://code.visualstudio.com/).
+## Complete git/GitHub Intro (optional)
+> [!NOTE]
+The basic training materials on git/GitHub can be found in `GIT-GITHUB.md`. Open this file to get started with Git/GitHub Introduction if required.
 
 ## Clone the Project
 
@@ -47,9 +53,13 @@ Before you begin, make sure you have the following installed on your local machi
 
    This command will read the `package.json` file and install all required packages, including Cucumber and Selenium.
 
-## Basic Training
 
-1. The basic training materials are stored in `INTRO.md`. Open this file to get started with the introductory tutorial.
+
+## Selenium/Cucumber Intro 
+
+> [!NOTE]
+
+1. The training materials are stored in `INTRO.md`. Open this file to get started with the introductory tutorial.
 2. Follow the instructions in `INTRO.md` to complete the intro tutorial. This will guide you through the basics of using Cucumber and Selenium with JavaScript.
 
 ## Create a New Project
