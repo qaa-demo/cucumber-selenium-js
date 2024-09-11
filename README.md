@@ -8,9 +8,19 @@ Welcome to the Cucumber/Selenium/JavaScript Demo and Intro Training repository! 
 Before you begin, make sure you have the following installed on your local machine:
 
 - **Node.js**: Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
+
+> **Node.js** is a cross-platform, open-source JavaScript runtime environment that can run on Windows, Linux, Unix, macOS, and more. Node.js runs on the V8 JavaScript engine, and executes JavaScript code outside a web browser. Node.js lets developers use JavaScript to write command line tools and for server-side scripting.
+
 - **Git**: Git is required for cloning the project. Install Git from [git-scm.com](https://git-scm.com/).
-- **Visual Studio Code (VSCode)**: A popular code editor. Download it from [code.visualstudio.com](https://code.visualstudio.com/).
+
+> **Git** is a distributed version control system that tracks versions of files. It is often used to control source code by programmers who are developing software collaboratively.
+
+
 - **GitHub Account**: A GitHub account is required to clone the repository and manage your project. You can sign up for a free account at [github.com](https://github.com/).
+
+> **GitHub** is a developer platform that allows developers to create, store, manage and share their code. It uses Git software, providing the distributed version control of Git plus access control, bug tracking, software feature requests, task management, continuous integration, and wikis for every project.
+
+- **Visual Studio Code (VSCode)**: A popular code editor. Download it from [code.visualstudio.com](https://code.visualstudio.com/).
 
 ## Clone the Project
 
