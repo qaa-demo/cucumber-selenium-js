@@ -58,10 +58,8 @@ The basic training materials on git/GitHub can be found in `GIT-GITHUB.md`. Open
 
 
 ## Complete Selenium/Cucumber Intro Training
-
 > [!NOTE]
-1. The training materials are stored in `INTRO.md`. Open this file to get started with the introductory tutorial.
-2. Follow the instructions in `INTRO.md` to complete the intro tutorial. This will guide you through the basics of using Cucumber and Selenium with JavaScript.
+The training materials are stored in `INTRO.md`. Open this file to get started with the introductory tutorial.Follow the instructions in `INTRO.md` to complete the intro tutorial. This will guide you through the basics of using Cucumber and Selenium with JavaScript.
 
 ## Create a New Project
 
