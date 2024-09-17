@@ -2,7 +2,7 @@
 
 ### **Introduction**
 
-Welcome to this intro course on **JavaScript Test Automation with Selenium and Cucumber**! In this course, we will explore how to write test automation scripts using JavaScript, Selenium, and Cucumber. The aim is to provide you with a foundation in these technologies by guiding you through the creation of basic tests.
+Welcome to this intro course on **Selenium Test Automation with JavaScript and Cucumber**! In this course, we will explore how to write Selenium test automation scripts using Cucumber/Gherking BDD (Given/When/Then statement format) and JavaScript. The aim is to provide you with a foundation in these technologies by guiding you through hands-on process of creation of basic tests.
 
 #### **Course Overview**
 

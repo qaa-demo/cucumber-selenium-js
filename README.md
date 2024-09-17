@@ -1,6 +1,8 @@
 
 # Cucumber/Selenium/JavaScript Demo and Intro Training
 
+![Cucumber/Selenium/JavaScript Demo and Intro Training](img/image01.png)
+
 Welcome to the Cucumber/Selenium/JavaScript Demo and Intro Training repository! This guide will help you get started with the project and provide you with instructions on how to set up and use the demo. 
 
 ## Prerequisites
@@ -55,10 +57,9 @@ The basic training materials on git/GitHub can be found in `GIT-GITHUB.md`. Open
 
 
 
-## Selenium/Cucumber Intro 
+## Complete Selenium/Cucumber Intro Training
 
 > [!NOTE]
-
 1. The training materials are stored in `INTRO.md`. Open this file to get started with the introductory tutorial.
 2. Follow the instructions in `INTRO.md` to complete the intro tutorial. This will guide you through the basics of using Cucumber and Selenium with JavaScript.
 
@@ -84,7 +85,7 @@ The basic training materials on git/GitHub can be found in `GIT-GITHUB.md`. Open
 
 You are now ready to start working on your QA automation project using Cucumber and Selenium with JavaScript. If you encounter any issues or have questions, refer to the documentation or seek help from the community.
 
-Happy leanrning!
+Happy learning!
 
 ---
 .
