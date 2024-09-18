@@ -38,11 +38,12 @@ The basic training materials on git/GitHub can be found in `GIT-GITHUB.md`. Open
    ```bash
    git clone [replace with this repo location]
    ```
-
+   If prompted if you trust the author, select 'Yes, I trust the author' button in VSCode
+   
 3. Navigate into the project directory:
 
    ```bash
-   cd demo-training-repo
+   cd [replace with your folder location on your pc]
    ```
 
 ## Install Dependencies
