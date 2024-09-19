@@ -39,7 +39,7 @@ The basic training materials on git/GitHub can be found in `GIT-GITHUB.md`. Open
    git clone [replace with this repo location]
    ```
    If prompted if you trust the author, select 'Yes, I trust the author' button in VSCode
-   
+
 3. Navigate into the project directory:
 
    ```bash
@@ -69,6 +69,7 @@ The training materials are stored in `INTRO.md`. Open this file to get started w
    - **[Parabank](https://parabank.parasoft.com/parabank/index.htm)**: A sample banking application for testing purposes.
    - **[Sauce Labs Demo App](https://www.saucedemo.com/)**: An e-Commerse demo app for testing various web automation scenarios.
    - **[Demo Orange HRM](https://opensource-demo.orangehrmlive.com/web/index.php/auth/login)**: HRM site for practicing automation.
+   - **[Demo Shopping Cart App](https://shopping-cart-new-one.vercel.app/)** Can also be installed locally via this **[MERN eCommerce Shopping Cart GitHub Repo](https://github.com/Ajith101/shopping-cart)**
    - Other Apps of your choice with business logic and multiple test cases you can automate
 
 
